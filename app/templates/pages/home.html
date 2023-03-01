@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <nav class="nav navbar bg-dark justify-content-center">
+        <h1 class="text-center text-primary">Crud Operation</h1>
+    </nav>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="m-2">
+                <div class="alert alert-success col-md-5 m-auto">{{ message }}</div>
+            </div>
+        {% endfor %}
+
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Add" class="btn btn-primary">
+    </form>
+
+    <hr/>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Subject</th>
+            <th>Message</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for datum in data %}
+            <tr>
+
+                <td>{{ forloop.counter }}</td>
+                <td>{{ datum.name }}</td>
+                <td>{{ datum.email }}</td>
+                <td>{{ datum.subject }}</td>
+                <td>{{ datum.message }}</td>
+                <td>
+                    <a href="{% url 'app:read' datum.id %}">View</a> | <a
+                        href="{% url 'app:update' datum.id %}">Update</a> | <a
+                        href="{% url 'app:delete' datum.id %}">Delete</a>
+                </td>
+
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

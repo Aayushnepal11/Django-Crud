@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <nav class="nav navbar bg-dark justify-content-center">
+        <h1 class="text-primary">Select</h1>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    <div class="row justify-content-center m-2">
+        <div class="card" style="width: 18rem;">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Name: {{ selected_data.name }}</li>
+                <li class="list-group-item">Email: {{ selected_data.email }}</li>
+                <li class="list-group-item">Subject: {{ selected_data.subject }}</li>
+                <li class="list-group-item">Message: {{ selected_data.message }}</li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-2">
+        <a href="{% url 'app:home' %}" class="btn btn-primary">Back</a>
+    </div>
+{% endblock content %}
